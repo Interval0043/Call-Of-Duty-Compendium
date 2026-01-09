@@ -4,26 +4,23 @@ namespace CODC.Working_Files;
 
 public class DataInit
 {
-    //Standard Metadata
-    private string game;
-    private string category;
-    private string family;
-    private string platform;
-    private string description;
+    //I had an idea. For better searching, we use a list of lists to contain them all.
+    //It's a little stupid, but I might as well, right?
+    public static List<List<Gun>> guns = new();
     
-    //The Wall of Lists
-
-    public List<Gun> mw2 = new();
-    
-    public void Init()
+    public static void Init()
     {
         MW2();
     }
     
     //The Wall of Functions
-    private void MW2()
+    //This is horrible. I'm sorry.
+    private static void MW2()
     {
-        game = "Modern Warfare 2";
+        const string game = "Modern Warfare 2";
+        string category;
+
+        List<Gun> mw2 = new();
         
         List<string> withCamos = new List<string>
         {
@@ -53,8 +50,20 @@ public class DataInit
                 category = "Light Machine Guns";
             else if (i <= 22)
                 category = "Sniper Rifles";
+            else if (i == 23)
+                category = "Special";
+            else if (i <= 27)
+                category = "Machine Pistols";
+            else if (i <= 33)
+                category = "Shotguns";
+            else if (i <= 37)
+                category = "Pistols";
+            else if (i <= 42)
+                category = "Launchers";
+            else
+                category = "Invalid Setup";
 
-            family = i switch
+            string family = i switch
             {
                 0 => "M4", 1 => "FAMAS", 2 => "SCAR", 3 => "TAR-21", 4 => "FAL", 5 => "M16", 6 => "ACR", 7 => "F2000", 8 => "AK",
                 9 => "MP5", 10 => "UMP45", 11 => "Vector", 12 => "P90", 13 => "Uzi",
@@ -64,10 +73,11 @@ public class DataInit
                 24 => "PP2000", 25 => "G18", 26 => "M93 Raffica", 27 => "TMP",
                 28 => "SPAS-12", 29 => "AA-12", 30 => "Striker", 31 => "Ranger", 32 => "M1014", 33 => "Model 1887",
                 34 => "USP .45", 35 => "Magnum", 36 => "M9", 37 => "Desert Eagle",
-                38 => "AT4", 39 => "Thumper", 40 => "Stinger", 41 => "Javelin", 42 => "RPG"
+                38 => "AT4", 39 => "Thumper", 40 => "Stinger", 41 => "Javelin", 42 => "RPG",
+                _ => "Invalid Setup"
             };
 
-            description = i switch
+            string description = i switch
             {
                 0 => "Fully automatic, all purpose weapon. The first assault rifle the user gets upon unlocking loadout creation. Solid all-rounder.",
                 1 => "3 round burst. Higher rate of fire, but manual bursts.",
@@ -92,5 +102,12 @@ public class DataInit
                     Game = game
                 });
         }
+        guns.Add(mw2);
+    }
+
+    public static void MWII()
+    {
+        const string game = "Modern Warfare II";
+        string category;
     }
 }

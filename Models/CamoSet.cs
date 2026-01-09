@@ -9,6 +9,7 @@ public class CamoSet
     private bool[]? BaseComplete { get; init; }
     
     //For games that don't have special camos, these arrays should be null.
+    //Note that Modern Warfare II's base camos are considered special, as they are unique per-gun.
     private string[]? SpecialCamos  { get; init; }
     private string[]? SpecialRequirements { get; init; }
     private bool[]? SpecialComplete { get; init; }
